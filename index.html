@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>環保餐具 - 三頁切換示範</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #2d6a4f;
+            color: white;
+            padding: 1rem 2rem;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: flex-end;
+            /* 右靠齊 */
+            background: #3a7a58;
+        }
+        
+        .tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            color: white;
+            user-select: none;
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .tab:first-child {
+            border-left: none;
+        }
+        
+        .tab.active {
+            background: #1b4332;
+            font-weight: bold;
+        }
+        
+        main {
+            padding: 2rem;
+        }
+        
+        .content {
+            display: none;
+        }
+        
+        .content.active {
+            display: block;
+        }
+        /* RWD簡單調整 */
+        
+        @media (max-width: 600px) {
+            .tabs {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 1rem;
+            }
+            .tab {
+                border-left: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                width: 100%;
+                padding: 0.8rem 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>環保餐具介紹</h1>
+    </header>
+
+    <div class="tabs" id="tabs">
+        <div class="tab active" data-target="bamboo">竹筷子</div>
+        <div class="tab" data-target="plastic">塑膠湯匙</div>
+        <div class="tab" data-target="alternative">替代方案</div>
+    </div>
+
+    <main>
+        <section id="bamboo" class="content active">
+            <h2>竹筷子</h2>
+            <p>竹筷子輕巧、可生物分解，是環保選擇。來自可再生的竹材，製作過程環保，適合日常使用。</p>
+        </section>
+
+        <section id="plastic" class="content">
+            <h2>塑膠湯匙</h2>
+            <p>塑膠湯匙多為一次性使用，製造成本低但不易分解，對環境造成負擔。</p>
+        </section>
+
+        <section id="alternative" class="content">
+            <h2>替代方案</h2>
+            <p>建議選用可重複使用的金屬或竹製餐具，減少塑膠廢棄物產生，並且更耐用環保。</p>
+        </section>
+    </main>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+                const targetId = tab.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
