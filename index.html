@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>免洗餐具介紹</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #2d6a4f;
+            color: white;
+            padding: 1rem 2rem;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: flex-end;
+            background: #3a7a58;
+        }
+        
+        .tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            color: white;
+            user-select: none;
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .tab:first-child {
+            border-left: none;
+        }
+        
+        .tab.active {
+            background: #1b4332;
+            font-weight: bold;
+        }
+        
+        main {
+            padding: 2rem;
+        }
+        
+        .content {
+            display: none;
+        }
+        
+        .content.active {
+            display: block;
+        }
+        
+        @media (max-width: 600px) {
+            .tabs {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 1rem;
+            }
+            .tab {
+                border-left: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                width: 100%;
+                padding: 0.8rem 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>免洗餐具介紹</h1>
+    </header>
+
+    <div class="tabs" id="tabs">
+        <div class="tab active" data-target="bamboo">竹筷子</div>
+        <div class="tab" data-target="plastic">塑膠湯匙</div>
+        <div class="tab" data-target="alternative">替代方案</div>
+    </div>
+
+    <main>
+        <section id="bamboo" class="content active">
+            <h2>竹筷子</h2>
+            <p>竹筷子是一種使用天然竹子製成的餐具，因其輕便、耐用且容易分解，成為越來越多人喜愛的環保選擇。</p>
+            <p>相較於一次性塑膠筷子，竹筷子在製造過程中不需使用石化材料，能大幅減少碳足跡與對環境的傷害。</p>
+            <p>此外，竹筷子的自然質感與手感受到許多使用者喜愛，在餐廳與家庭日常中都常見。</p>
+        </section>
+
+        <section id="plastic" class="content">
+            <h2>塑膠湯匙</h2>
+            <p>塑膠湯匙是一種常見的免洗餐具，因成本低、輕巧、易於大量生產而被廣泛使用於速食店、飲料店與外帶餐盒中。</p>
+            <p>然而，塑膠湯匙多為一次性使用，使用後即丟棄，難以回收，且大多數材質在自然環境中需數百年才能分解。這對海洋生態與土壤環境造成極大壓力。</p>
+            <p>根據研究，每年全球製造的免洗塑膠餐具中，湯匙佔有相當比例。在各地政府推動限塑政策後，許多店家開始主動提供環保替代品或鼓勵自備餐具。</p>
+        </section>
+
+        <section id="alternative" class="content">
+            <h2>替代方案</h2>
+            <p>為了減少一次性塑膠製品的使用，市場上已出現多種環保替代方案，包括不鏽鋼湯匙、矽膠餐具、木製刀叉、玉米澱粉製餐具等。</p>
+            <p>這些替代品大多可重複使用，且部分材質如PLA（聚乳酸）或竹纖維可在適當條件下分解，不僅更友善環境，也能提升消費者對可持續性的意識。</p>
+            <p>政府與企業也積極推動「自帶餐具」的方案，例如咖啡店提供可退還押金的環保杯系統，或學校推動自備午餐盒的活動。</p>
+            <p>最重要的是，從個人生活做起，改變一次性使用的習慣，就能對環境造成長遠正面的影響。</p>
+        </section>
+    </main>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+                const targetId = tab.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
